@@ -1,6 +1,7 @@
 import menu from '../../assets/sounds/001 game_theme.mp3'
 import level from '../../assets/sounds/002 the_seven_seas.mp3'
 import action from '../../assets/sounds/hover.wav'
+import { save } from '../utils/save';
 
 export const musicbank = {
   menu: new Audio(menu),
@@ -15,17 +16,13 @@ export function changeMusicVolume(value) {
     bank[i].volume = value;
   }
 
-  // variables.music = value;
-
-  // save({
-  //   music: value,
-  // });
+  save({
+    music: value,
+  });
 }
 
 export function changeSoundsVolume(value) {
-  // variables.sounds = value;
-
-  // save({
-  //   sounds: value,
-  // });
+  save({
+    sounds: value,
+  });
 }

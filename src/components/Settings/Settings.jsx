@@ -6,6 +6,7 @@ import musicIcon from '../../../assets/sprites/music.png';
 
 import './Settings.scss';
 import Toggler from '../Toggler/Toggler';
+import { changeMusicVolume, changeSoundsVolume } from '../../configs/sounds';
 
 function SoundOption({name, icon, onAction}) {
   const [isActive, setIsActive] = useState(true);
@@ -46,8 +47,8 @@ function SoundOption({name, icon, onAction}) {
 
   return (
     <div className={classnames}>
-      <img src={icon} onClick={handleClick} onChange={handleChange}/>
-      <input type='range' min='0' max='1' step='0.1' defaultValue='1' ref={inputRef}/>
+      <img src={icon} onClick={handleClick} />
+      <input type='range' min='0' max='1' step='0.1' defaultValue='1' ref={inputRef} onChange={handleChange}/>
     </div>
   )
 }
@@ -77,8 +78,8 @@ export default function Settings({setOptionsModal}) {
       <div className='modal--content'>
         <h2>Settings</h2>
         <div className='close-cross' onClick={() => setOptionsModal(false)}></div>
-        <SoundOption icon={musicIcon} onAction={() => {}}/>
-        <SoundOption icon={soundIcon} onAction={() => {}}/>
+        <SoundOption icon={musicIcon} onAction={changeMusicVolume}/>
+        <SoundOption icon={soundIcon} onAction={changeSoundsVolume}/>
         <FullScreen />
       </div>
     </div>
