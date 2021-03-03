@@ -1,0 +1,26 @@
+.portal {
+  width: 250px;
+  height: 592px;
+  margin-left: 1000px;
+  margin-bottom: -50px;
+
+  animation: portal 1s infinite;
+  animation-timing-function: steps(1, end);
+  background-image: url('../../../assets/sprites/portal.png');
+
+}
+
+@keyframes portal {
+  25% {
+    background-position-x: -100%;
+  }
+  50% {
+    background-position-x: -200%;
+  }
+  75% {
+    background-position-x: -300%;
+  }
+  100% {
+    background-position-x: -400%;
+  }
+}

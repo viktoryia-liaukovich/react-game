@@ -1,0 +1,28 @@
+@import "../../variables.scss";
+
+.character {
+  position: absolute;
+  left: 120px;
+  bottom: $bottom-line;
+  width: 64px;
+  transform: translateY(0px) rotate(0deg);
+  transition: transform 0.25s;
+
+  &.jumping {
+    transition-timing-function: ease-out;
+  }
+
+  &.falling {
+    transition-timing-function: ease-in;
+  }
+
+  &.in-portal {
+    animation: toPortal 1s forwards ease-in;
+  }
+}
+
+@keyframes toPortal {
+  100% {
+    transform: translate(850px, -200px) rotate(720deg);
+  }
+}

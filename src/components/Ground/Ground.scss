@@ -1,0 +1,9 @@
+@import '../../variables.scss';
+
+.ground {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: $bottom-line;
+  background-color: red;
+}

@@ -1,0 +1,52 @@
+.menu-button {
+  background-image: url('../../../assets/sprites/button.png');
+  background-size: cover;
+  width: 256px;
+  height: 256px;
+  margin: 0 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: 0.15s ease-in-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: calc(1.5 * 100%);
+    height: calc(1.5 * 100%);
+
+    background: radial-gradient(closest-side, white, transparent);
+    opacity: 0;
+
+    pointer-events: none;
+
+    transform: translateZ(-10px);
+    transition: 0.15s ease-in-out;
+  }
+
+  img {
+    width: 50%;
+    transition: 0.15s ease-in-out;
+  }
+
+  &:hover {
+    transform: scale(1.15);
+
+    &::before {
+      opacity: 1;
+    }
+
+    img {
+      width: 55%;
+    }
+  }
+
+  &_large {
+    width: 380px;
+    height: 380px;
+  }
+}
