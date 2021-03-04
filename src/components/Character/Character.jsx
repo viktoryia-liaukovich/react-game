@@ -3,8 +3,9 @@ import iconCharacter from '../../../assets/characters/1.png';
 import clx from 'classnames';
 
 import './Character.scss';
+import { gameSave } from '../../utils/save';
 
-export default function Character({charOnTop, jumpPortal}) {
+export default function Character({charOnTop, jumpPortal, onFinish}) {
   const [isJumping, setIsJumping] = useState({up: false, down: false});
 
   const that = useRef(null);
@@ -19,6 +20,14 @@ export default function Character({charOnTop, jumpPortal}) {
       setIsJumping({up: false, down: true})
     }
   }, [charOnTop])
+
+  useEffect(() => {
+    if (jumpPortal) {
+      that.current.onanimationend = () => {
+        onFinish('won');
+      }
+    }
+  }, [jumpPortal])
 
   function handleKeyPress(e) {
     if (!jumpState.current.up && !jumpState.current.down && [' ', 'ArrowUp'].includes(e.key)) {
@@ -52,10 +61,13 @@ export default function Character({charOnTop, jumpPortal}) {
     character: true,
     jumping: isJumping.up,
     falling: isJumping.down,
+    'on-top': charOnTop,
     'in-portal': jumpPortal
   })
 
+  const theme = [0, 45, 90, 135, 180, 225, 270, 315];
+
   return (
-    <img className={classnames} src={iconCharacter} ref={that}/>
+    <img className={classnames} src={iconCharacter} ref={that} style={{filter: `hue-rotate(${theme[gameSave.charColor]}deg)`}}/>
   );
 }

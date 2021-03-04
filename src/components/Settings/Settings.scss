@@ -24,7 +24,7 @@
 
 .modal--content {
   background-color: $color-bg-popup;
-  border: 5px solid $color-focus;
+  border: 5px solid $color-border-popup;
   border-radius: 15px;
   width: 350px;
   padding: 40px 35px;
@@ -32,11 +32,15 @@
   color: $color-text-light;
   position: relative;
 
+  .sound {
+    filter: invert(1);
+  }
+
   img {
     width: 32px;
     height: 32px;
     cursor: pointer;
-    filter: invert(1);
+
 
     &:hover {
       filter: contrast(0.5);

@@ -6,7 +6,10 @@ import { save } from '../utils/save';
 export const musicbank = {
   menu: new Audio(menu),
   level: new Audio(level),
-  action: new Audio(action)
+}
+
+export const soundbank = {
+  action: action
 }
 
 export function changeMusicVolume(value) {

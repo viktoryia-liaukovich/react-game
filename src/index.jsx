@@ -5,11 +5,13 @@ import './index.scss';
 import Menu from './views/Menu/Menu';
 import Level from './views/Level/Level';
 import { load, parseSave, setDefault } from './utils/save';
+import StartupModal from './components/StartupModal/StartupModal';
 
 const rootElement = document.getElementById('root');
 
 function App() {
   const [currentView, setCurrentView] = useState('menu');
+  const [isStartup, setIsStartup] = useState(true);
 
   useEffect(() => {
     if (!load()) setDefault();
@@ -18,10 +20,13 @@ function App() {
 
   return <>
     { currentView === 'level' &&
-      <Level />
+      <Level setCurrentView={setCurrentView}/>
     }
     { currentView === 'menu' &&
-      <Menu setCurrentView={setCurrentView}/>
+      <Menu isStartup={isStartup} setCurrentView={setCurrentView}/>
+    }
+    { isStartup &&
+      <StartupModal setIsStartup={setIsStartup}/>
     }
   </>;
 }

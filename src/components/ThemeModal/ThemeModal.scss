@@ -1,0 +1,20 @@
+.modal {
+  &--content {
+    .theme {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+
+      &-character {
+        pointer-events: none;
+        width: 100px;
+        height: 100px;
+      }
+
+      .left {
+        transform: scaleX(-1);
+      }
+    }
+  }
+}

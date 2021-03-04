@@ -7,6 +7,7 @@ import musicIcon from '../../../assets/sprites/music.png';
 import './Settings.scss';
 import Toggler from '../Toggler/Toggler';
 import { changeMusicVolume, changeSoundsVolume } from '../../configs/sounds';
+import { gameSave } from '../../utils/save';
 
 function SoundOption({name, icon, onAction}) {
   const [isActive, setIsActive] = useState(true);
@@ -47,8 +48,8 @@ function SoundOption({name, icon, onAction}) {
 
   return (
     <div className={classnames}>
-      <img src={icon} onClick={handleClick} />
-      <input type='range' min='0' max='1' step='0.1' defaultValue='1' ref={inputRef} onChange={handleChange}/>
+      <img className='sound' src={icon} onClick={handleClick} />
+      <input type='range' min='0' max='1' step='0.1' defaultValue={gameSave[name]} ref={inputRef} onChange={handleChange}/>
     </div>
   )
 }
@@ -78,8 +79,8 @@ export default function Settings({setOptionsModal}) {
       <div className='modal--content'>
         <h2>Settings</h2>
         <div className='close-cross' onClick={() => setOptionsModal(false)}></div>
-        <SoundOption icon={musicIcon} onAction={changeMusicVolume}/>
-        <SoundOption icon={soundIcon} onAction={changeSoundsVolume}/>
+        <SoundOption name='music' icon={musicIcon} onAction={changeMusicVolume}/>
+        <SoundOption name='sounds' icon={soundIcon} onAction={changeSoundsVolume}/>
         <FullScreen />
       </div>
     </div>

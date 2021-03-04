@@ -9,27 +9,37 @@ import { musicbank } from '../../configs/sounds';
 
 import './Menu.scss';
 import Settings from '../../components/Settings/Settings';
+import ThemeModal from '../../components/ThemeModal/ThemeModal';
 
-export default function Menu({setCurrentView}) {
+export default function Menu({isStartup, setCurrentView}) {
   const [optionsModal, setOptionsModal] = useState(false);
+  const [themeModal, setThemeModal] = useState(false);
 
   useEffect( () => {
-    musicbank.menu.loop = true;
-    musicbank.menu.autoplay = true;
+    if (!isStartup){
+      musicbank.menu.play();
+      musicbank.level.pause();
+      musicbank.level.currentTime = 0
+    };
   }, []);
 
-
-  return (
+  return <>
     <div className="menu">
-      <MenuButton src={character} action={() => console.log('прувет')}/>
+      <MenuButton src={character} action={() => setThemeModal(true)}/>
       <MenuButton src={play} className='menu-button_large' action={() => {
         musicbank.menu.pause();
         setCurrentView('level');
       }}/>
       <MenuButton src={settings} action={() => setOptionsModal(true)}/>
-      { optionsModal &&
-        <Settings setOptionsModal={setOptionsModal}/>
-      }
     </div>
-  )
+    { optionsModal &&
+      <Settings setOptionsModal={setOptionsModal}/>
+    }
+    { optionsModal &&
+      <Settings setOptionsModal={setOptionsModal}/>
+    }
+    { themeModal &&
+      <ThemeModal setThemeModal={setThemeModal} />
+    }
+  </>
 }

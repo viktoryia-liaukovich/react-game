@@ -14,6 +14,7 @@ export function setDefault() {
     music: '1',
     sounds: '1',
     attempts: '0',
+    charColor: '0',
   });
 }
 
