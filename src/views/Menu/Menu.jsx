@@ -4,6 +4,9 @@ import MenuButton from '../../components/MenuButton/MenuButton';
 import character from '../../../assets/sprites/player.png';
 import play from '../../../assets/sprites/play.png';
 import settings from '../../../assets/sprites/settings.png';
+import logo from '../../../assets/sprites/GEOMETRY DASH.png';
+import vika from '../../../assets/sprites/VENTSKUTSE VIKTORYIA.png';
+import rsschool from '../../../assets/sprites/rsschool.png';
 
 import { musicbank } from '../../configs/sounds';
 
@@ -23,18 +26,28 @@ export default function Menu({isStartup, setCurrentView}) {
     };
   }, []);
 
+  const LinkImg = ({src, alt, href}) => {
+    return (
+      <a href={href} target="_blank">
+        <img src={src} alt={alt}/>
+      </a>
+    )
+  }
+
   return <>
     <div className="menu">
+      <img src={logo} className="logo" alt="GEOMETRY DASH"/>
       <MenuButton src={character} action={() => setThemeModal(true)}/>
       <MenuButton src={play} className='menu-button_large' action={() => {
         musicbank.menu.pause();
         setCurrentView('level');
       }}/>
       <MenuButton src={settings} action={() => setOptionsModal(true)}/>
+      <footer>
+        <LinkImg src={vika} alt={"Viktoryia Ventskutse"} href="https://github.com/Ventskute"/>
+        <LinkImg src={rsschool} alt="RS School" href="https://rs.school"/>
+      </footer>
     </div>
-    { optionsModal &&
-      <Settings setOptionsModal={setOptionsModal}/>
-    }
     { optionsModal &&
       <Settings setOptionsModal={setOptionsModal}/>
     }

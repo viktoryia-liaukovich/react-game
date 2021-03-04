@@ -3,6 +3,8 @@ import { changeMusicVolume, changeSoundsVolume, musicbank } from '../../configs/
 import { gameSave } from '../../utils/save';
 import Button from '../Button/Button';
 
+import title from '../../../assets/sprites/turn on sound_.png';
+
 import './StartupModal.scss';
 
 export default function StartupModal({setIsStartup}) {
@@ -27,7 +29,7 @@ export default function StartupModal({setIsStartup}) {
   return (
     <div className='modal'>
       <div className="modal--content">
-        <h2>Turn on sound?</h2>
+        <img src={title} alt="Turn on sound?" className="title"/>
         <div className="buttons-wrapper">
           <Button mod='accept' action={acceptHandler}>Yes</Button>
           <Button mod='decline' action={declineHandler}>No</Button>

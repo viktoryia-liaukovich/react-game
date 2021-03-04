@@ -19,6 +19,12 @@ export function changeMusicVolume(value) {
     bank[i].volume = value;
   }
 
+  if (value != 0) {
+    musicbank.menu.play()
+  } else {
+    musicbank.menu.pause()
+  }
+
   save({
     music: value,
   });

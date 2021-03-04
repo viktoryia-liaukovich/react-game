@@ -1,9 +1,7 @@
-import level1 from "../../assets/backgrounds/4.png"
 import obstacles from "./obstacles"
 
 export default {
   test: {
-    image: level1,
     obstacles: [
       {
         type: obstacles.RECTANGLE,

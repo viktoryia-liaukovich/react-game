@@ -5,6 +5,11 @@
   height: 256px;
   margin: 0 20px;
 
+  @media screen and (max-width: 1024px) {
+    width: 180px;
+    height: 180px;
+  }
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,5 +53,11 @@
   &_large {
     width: 380px;
     height: 380px;
+
+    @media screen and (max-width: 1024px) {
+      width: 260px;
+      height: 260px;
+      margin: 20px 0;
+    }
   }
 }

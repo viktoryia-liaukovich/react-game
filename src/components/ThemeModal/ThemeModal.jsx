@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-
-import './ThemeModal.scss';
-import character from '../../../assets/characters/1.png';
-import arrow from '../../../assets/sprites/Arrow.png';
 import { gameSave, save } from '../../utils/save';
 
+import character from '../../../assets/characters/1.png';
+import arrow from '../../../assets/sprites/Arrow.png';
+import selectText from '../../../assets/sprites/choose theme.png';
+
+import background from '../../../assets/backgrounds/0.png';
+
+import './ThemeModal.scss';
 
 export default function ThemeModal({setThemeModal}) {
   const SelectCharacter = () => {
@@ -16,15 +19,17 @@ export default function ThemeModal({setThemeModal}) {
     }, [])
 
     const handleClick = (dir) => {
+      let num = 0;
       if (index + dir > theme.length - 1) {
-        setIndex(0);
+        num = 0;
       } else if (index + dir < 0){
-        setIndex(theme.length - 1)
-      } else setIndex(index + dir);
+        num = theme.length - 1;
+      } else num = index + dir;
 
       save({
-        charColor: index + dir,
+        charColor: num,
       })
+      setIndex(num);
     }
 
     return (
@@ -36,12 +41,44 @@ export default function ThemeModal({setThemeModal}) {
     )
   }
 
+  const SelectBackground = () => {
+    const theme = [0, 240, 290];
+    const [index, setIndex] = useState(0);
+
+    useEffect(() => {
+      setIndex(Number(gameSave.backgroundColor));
+    }, [])
+
+    const handleClick = (dir) => {
+      let num = 0;
+      if (index + dir > theme.length - 1) {
+        num = 0;
+      } else if (index + dir < 0){
+        num = theme.length - 1;
+      } else num = index + dir;
+
+      save({
+        backgroundColor: num,
+      })
+      setIndex(num);
+    }
+
+    return (
+      <div className="theme">
+        <img src={arrow} className='left' onClick={() => handleClick(-1)}/>
+        <img src={background} className='theme-character' style={{filter: `hue-rotate(${theme[index]}deg)`}}/>
+        <img src={arrow} onClick={() => handleClick(1)}/>
+      </div>
+    )
+  }
+
   return (
     <div className='modal'>
       <div className='modal--content'>
-        <h2>Select theme</h2>
+        <img src={selectText} alt="Choose theme" className="title"/>
         <div className='close-cross' onClick={() => setThemeModal(false)}></div>
         <SelectCharacter />
+        <SelectBackground />
       </div>
     </div>
   )

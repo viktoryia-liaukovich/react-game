@@ -13,6 +13,11 @@
   align-items: center;
   transition: opacity 0.25s ease;
 
+  .title {
+    width: auto;
+    pointer-events: none;
+  }
+
   h2 {
     text-transform: uppercase;
   }
@@ -26,7 +31,7 @@
   background-color: $color-bg-popup;
   border: 5px solid $color-border-popup;
   border-radius: 15px;
-  width: 350px;
+  width: 450px;
   padding: 40px 35px;
   text-align: center;
   color: $color-text-light;

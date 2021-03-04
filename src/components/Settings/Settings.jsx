@@ -3,11 +3,14 @@ import clx from 'classnames';
 
 import soundIcon from '../../../assets/sprites/sounds.png';
 import musicIcon from '../../../assets/sprites/music.png';
+import settingsText from '../../../assets/sprites/settingsText.png';
+import fullscreenText from '../../../assets/sprites/fullscreen.png';
 
-import './Settings.scss';
 import Toggler from '../Toggler/Toggler';
 import { changeMusicVolume, changeSoundsVolume } from '../../configs/sounds';
 import { gameSave } from '../../utils/save';
+
+import './Settings.scss';
 
 function SoundOption({name, icon, onAction}) {
   const [isActive, setIsActive] = useState(true);
@@ -38,7 +41,8 @@ function SoundOption({name, icon, onAction}) {
 
   useEffect(() => {
     onAction(inputRef.current.defaultValue);
-    if (inputRef.defaultValue === '0') handleClick();
+
+    if (gameSave[name] === '0') handleClick();
   }, [])
 
   const classnames = clx({
@@ -65,7 +69,7 @@ function FullScreen() {
 
   return (
     <div className='modal--item'>
-      <p>Fullscreen</p>
+      <img src={fullscreenText} alt="Fullscreen" className="title"/>
       <Toggler action={toggleFullScreen}/>
     </div>
   )
@@ -77,7 +81,7 @@ export default function Settings({setOptionsModal}) {
   return (
     <div className='modal'>
       <div className='modal--content'>
-        <h2>Settings</h2>
+        <img className="title" src={settingsText} alt="Settings"/>
         <div className='close-cross' onClick={() => setOptionsModal(false)}></div>
         <SoundOption name='music' icon={musicIcon} onAction={changeMusicVolume}/>
         <SoundOption name='sounds' icon={soundIcon} onAction={changeSoundsVolume}/>

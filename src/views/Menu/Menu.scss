@@ -1,9 +1,38 @@
 .menu {
   height: 100vh;
-  background-image: url('../../../assets//backgrounds/3.jpg');
+  background-image: url('../../../assets//backgrounds/2.jpg');
   background-size: cover;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+
+  .logo {
+    position: absolute;
+    top: 40px;
+    width: auto;
+    max-width: 80vw;
+  }
+
+  footer {
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+    padding: 0 100px;
+    display: flex;
+    justify-content: space-between;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    img {
+      height: 40px;
+    }
+  }
 }
