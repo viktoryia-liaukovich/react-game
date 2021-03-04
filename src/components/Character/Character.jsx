@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import iconCharacter from '../../../assets/characters/1.png';
+import iconCharacter from '../../../assets/sprites/char.png';
 import clx from 'classnames';
 
 import './Character.scss';

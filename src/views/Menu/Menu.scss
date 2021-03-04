@@ -42,28 +42,15 @@
     bottom: 100px;
     display: flex;
     flex-direction: column;
+    max-height: 50px;
+    cursor: pointer;
+
+    &:hover {
+      filter: contrast(0.7);
+    }
 
     @media screen and (max-width: 768px) {
       bottom: 120px;
-    }
-
-    img {
-      max-height: 50px;
-    }
-
-    .attempts {
-      img {
-        max-height: 40px;
-        margin-bottom: -7px;
-      }
-    }
-
-    span {
-      color: white;
-      font-weight: bold;
-      margin-left: 15px;
-      font-size: 40px;
-      line-height: 30px;
     }
   }
 }

@@ -25,6 +25,14 @@ function App() {
       const checkbox = document.querySelector('.checkbox.fullscreen');
       checkbox && (checkbox.checked = query.matches);
     };
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'l') {
+        setCurrentView('level')
+      } else if (e.key === 'm') {
+        setCurrentView('menu')
+      }
+    })
   }, [])
 
   return <>

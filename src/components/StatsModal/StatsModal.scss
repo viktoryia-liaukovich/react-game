@@ -1,0 +1,32 @@
+.modal {
+  &--content {
+    .attempts {
+      img {
+        max-height: 40px;
+        margin-bottom: -7px;
+      }
+    }
+
+    span {
+      color: white;
+      font-weight: bold;
+      margin-left: 15px;
+      font-size: 40px;
+      line-height: 30px;
+    }
+
+    .stats-table {
+      margin-top: 20px;
+      text-align: start;
+
+      td + td {
+        text-align: end;
+      }
+
+      .centered {
+        text-align: center;
+        padding: 0 30px;
+      }
+    }
+  }
+}

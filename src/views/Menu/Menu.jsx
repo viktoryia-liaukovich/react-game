@@ -8,18 +8,18 @@ import logo from '../../../assets/sprites/GEOMETRY DASH.png';
 import vika from '../../../assets/sprites/VENTSKUTSE VIKTORYIA.png';
 import rsschool from '../../../assets/sprites/rsschool.png';
 import statistics from '../../../assets/sprites/statistics.png';
-import attempts from '../../../assets/sprites/attempts.png';
 
 import { musicbank } from '../../configs/sounds';
 
 import './Menu.scss';
 import Settings from '../../components/Settings/Settings';
 import ThemeModal from '../../components/ThemeModal/ThemeModal';
-import { gameSave } from '../../utils/save';
+import StatsModal from '../../components/StatsModal/StatsModal';
 
 export default function Menu({isStartup, setCurrentView}) {
   const [optionsModal, setOptionsModal] = useState(false);
   const [themeModal, setThemeModal] = useState(false);
+  const [statsModal, setStatsModal] = useState(false);
 
   useEffect( () => {
     if (!isStartup){
@@ -27,6 +27,14 @@ export default function Menu({isStartup, setCurrentView}) {
       musicbank.level.pause();
       musicbank.level.currentTime = 0
     };
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'o') {
+        setOptionsModal(true)
+      } else if (e.key === 't') {
+        setThemeModal(true)
+      }
+    })
   }, []);
 
   const LinkImg = ({src, alt, href}) => {
@@ -46,13 +54,7 @@ export default function Menu({isStartup, setCurrentView}) {
         setCurrentView('level');
       }}/>
       <MenuButton src={settings} action={() => setOptionsModal(true)}/>
-      <section className="statistics">
-        <img src={statistics} alt="statistics"/>
-        <div className="attempts">
-          <img src={attempts} alt="attempts"/>
-          <span>{gameSave.attempts}</span>
-        </div>
-      </section>
+      <img src={statistics} className="statistics" alt="statistics" onClick={() => setStatsModal(true)}/>
       <footer>
         <LinkImg src={vika} alt={"Viktoryia Ventskutse"} href="https://github.com/Ventskute"/>
         <LinkImg src={rsschool} alt="RS School" href="https://rs.school"/>
@@ -63,6 +65,9 @@ export default function Menu({isStartup, setCurrentView}) {
     }
     { themeModal &&
       <ThemeModal setThemeModal={setThemeModal} />
+    }
+    { statsModal &&
+      <StatsModal setStatsModal={setStatsModal} />
     }
   </>
 }

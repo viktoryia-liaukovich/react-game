@@ -1,72 +1,55 @@
 @import '../../variables.scss';
 
-.checkbox-label {
-  display: block;
-  background: #f3f3f3;
+.toggler {
+  margin-left: 40px;
 
-  height: 25px;
-  width: 60px;
-
-  border-radius: 50px;
-  position: relative;
-  box-shadow: 0 0 0 2px #dddddd;
-
-  cursor: pointer;
-
-  // .on {
-  //   display: block;
-  //   position: absolute;
-  //   z-index: 0;
-  //   left: 0;
-  //   opacity: 1;
-  //   min-width: 300px;
-  //   opacity: 0;
-  //   color: rgb(255, 255, 255);
-  // }
-  // .off {
-  //   display: block;
-  //   position: absolute;
-  //   z-index: 0;
-  //   right: 80px;
-  //   text-align: right;
-  //   opacity: 1;
-  //   min-width: 300px;
-  //   opacity: 1;
-  //   color: #bbbbbb;
-  // }
-  &:before {
-    content: "";
+  .checkbox-label {
     display: block;
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    border-radius: 50px;
-    height: 25px;
-    width: 25px;
-    background: white;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2), 0 0 0 2px #dddddd;
-  }
-}
+    background: #f3f3f3;
 
-.checkbox {
-  position: absolute;
-  opacity: 0;
-  &:checked {
-    + .checkbox-label {
-      background: $color-focus;
-      box-shadow: 0 0 0 2px $color-focus;
-      .on {
-        left: 70px;
-        opacity: 1;
-      }
-      .off {
-        right: 0px;
-        opacity: 0;
-      }
-      &:before {
-        left: 30px;
-        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2), 0 0 0 2px $color-focus;
+    height: 25px;
+    width: 60px;
+
+    border-radius: 50px;
+    position: relative;
+    box-shadow: 0 0 0 2px #dddddd;
+
+    cursor: pointer;
+
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      border-radius: 50px;
+      height: 25px;
+      width: 25px;
+      background: white;
+      box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2), 0 0 0 2px #dddddd;
+    }
+  }
+
+  .checkbox {
+    position: absolute;
+    opacity: 0;
+    &:checked {
+      + .checkbox-label {
+        background: $color-focus;
+        box-shadow: 0 0 0 2px $color-focus;
+        .on {
+          left: 70px;
+          opacity: 1;
+        }
+        .off {
+          right: 0px;
+          opacity: 0;
+        }
+        &:before {
+          left: 30px;
+          box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2), 0 0 0 2px $color-focus;
+        }
       }
     }
   }

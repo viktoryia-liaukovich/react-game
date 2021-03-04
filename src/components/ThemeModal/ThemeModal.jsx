@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { gameSave, save } from '../../utils/save';
 
-import character from '../../../assets/characters/1.png';
+import character from '../../../assets/sprites/char.png';
 import arrow from '../../../assets/sprites/Arrow.png';
 import selectText from '../../../assets/sprites/choose theme.png';
 
@@ -34,9 +34,9 @@ export default function ThemeModal({setThemeModal}) {
 
     return (
       <div className='theme'>
-        <img src={arrow} className='left' onClick={() => handleClick(-1)}/>
+        <img src={arrow} className='arrow left' onClick={() => handleClick(-1)}/>
         <img src={character} className='theme-character' style={{filter: `hue-rotate(${theme[index]}deg)`}}/>
-        <img src={arrow} onClick={() => handleClick(1)}/>
+        <img src={arrow} className='arrow' onClick={() => handleClick(1)}/>
       </div>
     )
   }
@@ -65,9 +65,9 @@ export default function ThemeModal({setThemeModal}) {
 
     return (
       <div className="theme">
-        <img src={arrow} className='left' onClick={() => handleClick(-1)}/>
+        <img src={arrow} className='left arrow' onClick={() => handleClick(-1)}/>
         <img src={background} className='theme-character' style={{filter: `hue-rotate(${theme[index]}deg)`}}/>
-        <img src={arrow} onClick={() => handleClick(1)}/>
+        <img src={arrow} className='arrow' onClick={() => handleClick(1)}/>
       </div>
     )
   }

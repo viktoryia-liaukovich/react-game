@@ -8,12 +8,18 @@
 
       &-character {
         pointer-events: none;
-        width: 100px;
-        height: 100px;
+        width: 150px;
+        height: 150px;
       }
 
       .left {
         transform: scaleX(-1);
+      }
+
+      .arrow {
+        height: 64px;
+        width: auto;
+        margin: 0 20px;
       }
     }
   }

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { gameSave } from "../../utils/save";
+import { gameSave, save } from "../../utils/save";
 import Portal from "../Portal/Portal";
 
 import "./Obstacles.scss";
@@ -36,11 +36,18 @@ export default function Obstacles(props) {
       const time = `${shift / 600}s`;
       ref.current.style.transitionDuration = time;
 
+      let blockPassed = 0;
+
       setTimeout(() => {
         ref.current.style.transform = `translateX(-${shift}px)`
 
         ref.current.ontransitionend = () => {
           const x = -ref.current.getBoundingClientRect().x;
+
+          save({
+            stats: [...gameSave.stats, blockPassed / config.length].sort().reverse().slice(0, 10)
+          })
+
           setJumpPortal(true)
         }
       }, 1000);
@@ -79,6 +86,7 @@ export default function Obstacles(props) {
             ) {
               charEl.style.transform = `translateY(-${window.innerHeight - rect.bottom - rect.height}px)`;
               charEl.style.transitionDuration = '';
+              blockPassed++;
 
               setOnTop(true);
             } else if (!charEl.classList.contains("on-top")) {

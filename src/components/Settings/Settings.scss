@@ -31,7 +31,6 @@
   background-color: $color-bg-popup;
   border: 5px solid $color-border-popup;
   border-radius: 15px;
-  width: 450px;
   padding: 40px 35px;
   text-align: center;
   color: $color-text-light;
@@ -39,17 +38,21 @@
 
   .sound {
     filter: invert(1);
+
   }
 
-  img {
+  .sound, .arrow {
     width: 32px;
-    height: 32px;
-    cursor: pointer;
 
+    cursor: pointer;
 
     &:hover {
       filter: contrast(0.5);
     }
+  }
+
+  img {
+    height: 32px;
   }
 
   .close-cross {

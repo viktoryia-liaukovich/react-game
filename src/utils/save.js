@@ -17,6 +17,7 @@ export function setDefault() {
     charColor: '0',
     backgroundColor: '0',
     autorun: false,
+    stats: new Array(10).fill(0.0)
   });
 }
 
