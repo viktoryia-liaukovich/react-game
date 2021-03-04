@@ -38,7 +38,7 @@ export default function Obstacles(props) {
 
         const el = elements.find((el) => {
           const rect = el.getBoundingClientRect();
-          return rect.x > 0 && rect.x <= char.x + char.width;
+          return rect.x > 0;
         });
 
         if (el) {
@@ -54,6 +54,8 @@ export default function Obstacles(props) {
 
             if (
               Math.floor(char.y + char.height) <= rect.y + 20 &&
+              char.x + char.width > rect.x &&
+              char.x <= rect.x + rect.width &&
               charEl.classList.contains("falling")
             ) {
               charEl.style.transform = `translateY(-${window.innerHeight - rect.bottom - rect.height}px)`;
@@ -62,10 +64,10 @@ export default function Obstacles(props) {
               setOnTop(true);
             } else if (!charEl.classList.contains("on-top")) {
               onFinish('lost')
-              onFinish('lost')
             }
           } else {
             if (
+              char.x > rect.x + rect.width &&
               charEl.style.transform !== "" &&
               !charEl.classList.contains("falling") &&
               !charEl.classList.contains("jumping")
@@ -76,8 +78,9 @@ export default function Obstacles(props) {
               charEl.style.transitionDuration = `${deltaTime}s`;
 
               charEl.style.transform = "";
+            } else if (char.x > rect.x) {
+              setOnTop(false);
             }
-            setOnTop(false);
           }
         }
       }, 5);
