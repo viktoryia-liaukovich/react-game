@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../Button/Button';
 
-import './finalModal.scss';
+import './FinalModal.scss';
 
 export default function FinalModal({ type, setCurrentView, setModal }) {
   return (
