@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import Menu from './views/Menu/Menu';
 import Level from './views/Level/Level';
-import { load, parseSave, setDefault } from './utils/save';
+import { load, parseSave, save, setDefault } from './utils/save';
 import StartupModal from './components/StartupModal/StartupModal';
 import FinalModal from './components/FinalModal/FinalModal';
 
@@ -18,6 +18,13 @@ function App() {
   useEffect(() => {
     if (!load()) setDefault();
     parseSave();
+
+    const query = matchMedia('all and (display-mode: fullscreen');
+
+    query.onchange = (e) => {
+      const checkbox = document.querySelector('.checkbox.fullscreen');
+      checkbox && (checkbox.checked = query.matches);
+    };
   }, [])
 
   return <>

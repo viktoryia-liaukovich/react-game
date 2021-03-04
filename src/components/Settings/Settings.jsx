@@ -5,10 +5,11 @@ import soundIcon from '../../../assets/sprites/sounds.png';
 import musicIcon from '../../../assets/sprites/music.png';
 import settingsText from '../../../assets/sprites/settingsText.png';
 import fullscreenText from '../../../assets/sprites/fullscreenText.png';
+import autorunText from '../../../assets/sprites/autorun.png';
 
 import Toggler from '../Toggler/Toggler';
 import { changeMusicVolume, changeSoundsVolume } from '../../configs/sounds';
-import { gameSave } from '../../utils/save';
+import { gameSave, save } from '../../utils/save';
 
 import './Settings.scss';
 
@@ -67,15 +68,30 @@ function FullScreen() {
     }
   }
 
+  const query = matchMedia('all and (display-mode: fullscreen');
+
   return (
     <div className='modal--item'>
       <img src={fullscreenText} alt="Fullscreen" className="title"/>
-      <Toggler action={toggleFullScreen}/>
+      <Toggler action={toggleFullScreen} mod='fullscreen' defaultValue={query.matches}/>
     </div>
   )
 }
 
+function AutoRun() {
+  const toggleAutorun = () => {
+    save({
+      autorun: !gameSave.autorun
+    })
+  }
 
+  return (
+    <div className='modal--item'>
+      <img src={autorunText} alt="Autorun" className="title"/>
+      <Toggler action={toggleAutorun} mod='autorun' defaultValue={gameSave.autorun}/>
+    </div>
+  )
+}
 
 export default function Settings({setOptionsModal}) {
   return (
@@ -86,6 +102,7 @@ export default function Settings({setOptionsModal}) {
         <SoundOption name='music' icon={musicIcon} onAction={changeMusicVolume}/>
         <SoundOption name='sounds' icon={soundIcon} onAction={changeSoundsVolume}/>
         <FullScreen />
+        <AutoRun />
       </div>
     </div>
   )

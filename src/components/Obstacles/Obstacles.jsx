@@ -1,20 +1,33 @@
 import React, { useEffect, useRef, useState } from "react";
-import { musicbank } from "../../configs/sounds";
+import { gameSave } from "../../utils/save";
 import Portal from "../Portal/Portal";
 
 import "./Obstacles.scss";
 
 export default function Obstacles(props) {
   const { config, setOnTop, setJumpPortal, onFinish } = props;
-
-  let finishState = false;
-
   const [elements, setElements] = useState([]);
 
   const ref = useRef(null);
 
   useEffect(() => {
     let int = null;
+
+    const handleAutoComplete = (charEl, char, elInd) => {
+      const elRect = elements[elInd].getBoundingClientRect()
+      const nextRect = elements[elInd + 1] && elements[elInd + 1].getBoundingClientRect()
+
+      const shouldJump = (
+        elRect.x - (char.x + char.width) < 180 &&
+        elRect.top <= char.top + char.height &&
+        ((nextRect && nextRect.top <= elRect.top) || !nextRect) &&
+        ((nextRect && !(nextRect.x - (elRect.x + elRect.width) > 300 && charEl.classList.contains('on-top'))) || !nextRect)
+      )
+
+      if (shouldJump) {
+        document.body.dispatchEvent(new KeyboardEvent('keydown', {'key':' '}));
+      }
+    }
 
     if (!elements.length) {
       setElements(Array.from(document.querySelectorAll(".obstacles .rectangle")));
@@ -36,13 +49,19 @@ export default function Obstacles(props) {
         const charEl = document.querySelector(".character");
         const char = charEl && charEl.getBoundingClientRect();
 
-        const el = elements.find((el) => {
+        const elInd = elements.findIndex((el) => {
           const rect = el.getBoundingClientRect();
           return rect.x > 0;
         });
 
-        if (el) {
+        if (elInd >= 0) {
+          const el = elements[elInd];
+
           const rect = el.getBoundingClientRect();
+
+          if (gameSave.autorun) {
+            handleAutoComplete(charEl, char, elInd)
+          }
 
           if (
             char.x + char.width > rect.x &&

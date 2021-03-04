@@ -15,7 +15,8 @@ export function setDefault() {
     sounds: '1',
     attempts: '0',
     charColor: '0',
-    backgroundColor: '0'
+    backgroundColor: '0',
+    autorun: false,
   });
 }
 
