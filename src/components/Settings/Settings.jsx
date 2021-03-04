@@ -4,7 +4,7 @@ import clx from 'classnames';
 import soundIcon from '../../../assets/sprites/sounds.png';
 import musicIcon from '../../../assets/sprites/music.png';
 import settingsText from '../../../assets/sprites/settingsText.png';
-import fullscreenText from '../../../assets/sprites/fullscreen.png';
+import fullscreenText from '../../../assets/sprites/fullscreenText.png';
 
 import Toggler from '../Toggler/Toggler';
 import { changeMusicVolume, changeSoundsVolume } from '../../configs/sounds';
