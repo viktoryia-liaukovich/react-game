@@ -18,7 +18,7 @@ export default function Obstacles(props) {
       const nextRect = elements[elInd + 1] && elements[elInd + 1].getBoundingClientRect()
 
       const shouldJump = (
-        elRect.x - (char.x + char.width) < 180 &&
+        elRect.x - (char.x + char.width) < 150 &&
         elRect.top <= char.top + char.height &&
         ((nextRect && nextRect.top <= elRect.top) || !nextRect) &&
         ((nextRect && !(nextRect.x - (elRect.x + elRect.width) > 300 && charEl.classList.contains('on-top'))) || !nextRect)

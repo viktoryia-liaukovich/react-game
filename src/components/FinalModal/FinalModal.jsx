@@ -28,28 +28,32 @@ export default function FinalModal({ type, setCurrentView, setModal }) {
       <div className='modal--content'>
         <img src={images[type]} alt={type} className="title"/>
         { type !== 'lost' &&
-          <Button
-            action={() => {
-              setCurrentView('menu')
-              setModal(false)
-            }}
-            mod="center"
-          >
-            To Menu
-          </Button>
-        }
-        { type === 'lost' &&
-          <>
-            <div className='close-cross' onClick={() => setModal(false)}></div>
+          <div className="modal--item">
             <Button
               action={() => {
-                setCurrentView('level')
+                setCurrentView('menu')
                 setModal(false)
               }}
               mod="center"
             >
-              Restart
+              To Menu
             </Button>
+          </div>
+        }
+        { type === 'lost' &&
+          <>
+            <div className='close-cross' onClick={() => setModal(false)}></div>
+            <div className="modal--item">
+              <Button
+                action={() => {
+                  setCurrentView('level')
+                  setModal(false)
+                }}
+                mod="center"
+              >
+                Restart
+              </Button>
+            </div>
           </>
         }
       </div>
