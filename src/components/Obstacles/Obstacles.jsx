@@ -20,6 +20,8 @@ export default function Obstacles(props) {
       setElements(Array.from(document.querySelectorAll(".obstacles .rectangle")));
     } else {
       const shift = config.reduce((acc, val) => acc + val.pos + 100, 0) + 100;
+      const time = `${shift / 600}s`;
+      ref.current.style.transitionDuration = time;
 
       setTimeout(() => {
         ref.current.style.transform = `translateX(-${shift}px)`
@@ -78,7 +80,7 @@ export default function Obstacles(props) {
             setOnTop(false);
           }
         }
-      }, 16);
+      }, 5);
 
       ref.current.addEventListener("transitionend", () => {
         clearInterval(int);

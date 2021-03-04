@@ -4,9 +4,9 @@
   position: absolute;
   left: 120px;
   bottom: $bottom-line;
-  width: 64px;
+  width: 80px;
   transform: translateY(0px) rotate(0deg);
-  transition: transform 0.25s;
+  transition: transform 0.17s;
 
   &.jumping {
     transition-timing-function: ease-out;
