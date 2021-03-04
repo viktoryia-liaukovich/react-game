@@ -31,24 +31,26 @@ export default function Character({charOnTop, jumpPortal, onFinish}) {
 
   function handleKeyPress(e) {
     if (!jumpState.current.up && !jumpState.current.down && [' ', 'ArrowUp'].includes(e.key)) {
-      const shiftY = window.innerHeight - Math.round(that.current.getBoundingClientRect().bottom)
-      const translate = `translateY(-${shiftY}px)`
-      that.current.style.transform = translate;
+      if (that.current) {
+        const shiftY = window.innerHeight - Math.round(that.current.getBoundingClientRect().bottom)
+        const translate = `translateY(-${shiftY}px)`
+        that.current.style.transform = translate;
 
-      setIsJumping({up: true, down: false});
-
-      that.current.ontransitionend = () => {
-        if (that.current.style.transform === translate) {
-          const deltaTime = (window.innerHeight - that.current.getBoundingClientRect().bottom - 200) / 800;
-          that.current.style.transitionDuration = `${deltaTime}s`;
-          that.current.style.transform = '';
-        }
-        setIsJumping({up: false, down: true})
+        setIsJumping({up: true, down: false});
 
         that.current.ontransitionend = () => {
-          that.current.style.transitionDuration = '';
-          setIsJumping({up: false, down: false})
-        };
+          if (that.current.style.transform === translate) {
+            const deltaTime = (window.innerHeight - that.current.getBoundingClientRect().bottom - 200) / 800;
+            that.current.style.transitionDuration = `${deltaTime}s`;
+            that.current.style.transform = '';
+          }
+          setIsJumping({up: false, down: true})
+
+          that.current.ontransitionend = () => {
+            that.current.style.transitionDuration = '';
+            setIsJumping({up: false, down: false})
+          };
+        }
       }
     }
   }

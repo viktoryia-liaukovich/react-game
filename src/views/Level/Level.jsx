@@ -15,10 +15,9 @@ import image2 from '../../../assets/backgrounds/2.jpg';
 import FinalModal from '../../components/FinalModal/FinalModal';
 import { gameSave } from '../../utils/save';
 
-export default function Level({setCurrentView}) {
+export default function Level({setIsFinished}) {
   const [charOnTop, setCharOnTop] = useState(null);
   const [jumpPortal, setJumpPortal] = useState(null);
-  const [isFinished, setIsFinished] = useState(false);
   const backgrounds = [image0, image1, image2];
 
   useEffect(() => {
@@ -35,10 +34,7 @@ export default function Level({setCurrentView}) {
     }}>
       <Character onFinish={setIsFinished} charOnTop={charOnTop} jumpPortal={jumpPortal}/>
       <Ground texture={backgrounds[gameSave.backgroundColor]}/>
-      <Obstacles config={config.test.obstacles} setOnTop={setCharOnTop} setJumpPortal={setJumpPortal}/>
+      <Obstacles onFinish={setIsFinished} config={config.test.obstacles} setOnTop={setCharOnTop} setJumpPortal={setJumpPortal}/>
     </div>
-    { isFinished &&
-      <FinalModal type={isFinished} setModal={setIsFinished} setCurrentView={setCurrentView}/>
-    }
   </>
 }

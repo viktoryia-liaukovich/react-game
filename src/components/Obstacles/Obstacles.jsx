@@ -5,7 +5,7 @@ import Portal from "../Portal/Portal";
 import "./Obstacles.scss";
 
 export default function Obstacles(props) {
-  const { config, setOnTop, setJumpPortal } = props;
+  const { config, setOnTop, setJumpPortal, onFinish } = props;
 
   let finishState = false;
 
@@ -21,18 +21,12 @@ export default function Obstacles(props) {
     } else {
       const shift = config.reduce((acc, val) => acc + val.pos + 100, 0) + 100;
 
-      ref.current.style.transitionDuration = `7s`;
       setTimeout(() => {
         ref.current.style.transform = `translateX(-${shift}px)`
 
-        finishState = false
-
         ref.current.ontransitionend = () => {
           const x = -ref.current.getBoundingClientRect().x;
-          if (!finishState && x === shift) {
-            finishState = true
-            setJumpPortal(true)
-          }
+          setJumpPortal(true)
         }
       }, 1000);
 
@@ -65,17 +59,8 @@ export default function Obstacles(props) {
 
               setOnTop(true);
             } else if (!charEl.classList.contains("on-top")) {
-              finishState = true;
-              clearInterval(int);
-
-              elements.forEach(element => element.style.backgroundColor = "")
-
-              musicbank.level.currentTime = 0;
-
-              ref.current.style.transitionDuration = `0.25s`;
-              ref.current.style.transform = `translateX(0px)`;
-
-              setElements([...elements])
+              onFinish('lost')
+              onFinish('lost')
             }
           } else {
             if (
