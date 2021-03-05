@@ -6,6 +6,7 @@ import musicIcon from '../../../assets/sprites/music.png';
 import settingsText from '../../../assets/sprites/settingsText.png';
 import fullscreenText from '../../../assets/sprites/fullscreenText.png';
 import autorunText from '../../../assets/sprites/autorun.png';
+import hotkeysText from '../../../assets/sprites/hotkeys.png';
 
 import Toggler from '../Toggler/Toggler';
 import { changeMusicVolume, changeSoundsVolume } from '../../configs/sounds';
@@ -93,6 +94,19 @@ function AutoRun() {
   )
 }
 
+function Hotkeys() {
+  return (
+    <div className='modal--item column'>
+      <img src={hotkeysText} alt="Hotkeys" className="title"/>
+      <p>o - options (this modal)</p>
+      <p>t - theme chooser</p>
+      <p>s - statistics</p>
+      <p>p - play new game</p>
+      <p>m - main menu</p>
+    </div>
+  )
+}
+
 export default function Settings({setOptionsModal}) {
   return (
     <div className='modal'>
@@ -103,6 +117,7 @@ export default function Settings({setOptionsModal}) {
         <SoundOption name='sounds' icon={soundIcon} onAction={changeSoundsVolume}/>
         <FullScreen />
         <AutoRun />
+        <Hotkeys />
       </div>
     </div>
   )

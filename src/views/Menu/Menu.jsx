@@ -33,6 +33,8 @@ export default function Menu({isStartup, setCurrentView}) {
         setOptionsModal(true)
       } else if (e.key === 't') {
         setThemeModal(true)
+      } else if (e.key == 's') {
+        setStatsModal(true)
       }
     })
   }, []);
