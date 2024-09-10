@@ -1,0 +1,26 @@
+.modal {
+  &--content {
+    .theme {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+
+      &-character {
+        pointer-events: none;
+        width: 150px;
+        height: 150px;
+      }
+
+      .left {
+        transform: scaleX(-1);
+      }
+
+      .arrow {
+        height: 64px;
+        width: auto;
+        margin: 0 20px;
+      }
+    }
+  }
+}

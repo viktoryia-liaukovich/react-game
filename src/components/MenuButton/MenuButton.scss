@@ -1,0 +1,63 @@
+.menu-button {
+  background-image: url('../../../assets/sprites/button.png');
+  background-size: cover;
+  width: 256px;
+  height: 256px;
+  margin: 0 20px;
+
+  @media screen and (max-width: 1024px) {
+    width: 150px;
+    height: 150px;
+  }
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: 0.15s ease-in-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: calc(1.5 * 100%);
+    height: calc(1.5 * 100%);
+
+    background: radial-gradient(closest-side, white, transparent);
+    opacity: 0;
+
+    pointer-events: none;
+
+    transform: translateZ(-10px);
+    transition: 0.15s ease-in-out;
+  }
+
+  img {
+    width: 50%;
+    transition: 0.15s ease-in-out;
+  }
+
+  &:hover {
+    transform: scale(1.15);
+
+    &::before {
+      opacity: 1;
+    }
+
+    img {
+      width: 60%;
+    }
+  }
+
+  &_large {
+    width: 380px;
+    height: 380px;
+
+    @media screen and (max-width: 1024px) {
+      width: 220px;
+      height: 220px;
+      margin: 10px 0;
+    }
+  }
+}
